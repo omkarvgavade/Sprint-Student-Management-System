@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Management System</title>
+    <style>
+      .container {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr 3fr;
+        grid-template-areas: "leftForm studentData";
+        height: 900px;
+      }
+      .leftForm {
+        grid-area: leftForm;
+        margin: 0px;
+        border: 2px solid black;
+      }
+      .leftForm > h1 {
+        font-size: 4rem;
+        color: #5d5d50;
+      }
+      .leftForm > form {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 2rem;
+      }
+      .leftForm > form > div {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+      }
+      .leftForm > form > div > label {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: justify;
+        color: rgb(28, 6, 68);
+      }
+      .studentData {
+        grid-area: studentData;
+        border: 2px solid black;
+        padding: 30px;
+      }
+      .btnDiv {
+        justify-content: center;
+        width: 85%;
+        margin: auto;
+        height: 100px;
+      }
+      .btnDiv > button {
+        width: 100%;
+        margin: auto;
+        height: 2rem;
+        margin-top: 1rem;
+        font-size: 15px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+      }
+      .studentData {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 3rem;
+      }
+      .dataDiv1 {
+        border: 4px solid rgb(0, 82, 54);
+        min-width: 10rem;
+        max-width: 20rem;
+        height: 15rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+      }
+      .dataDiv1 > div {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        justify-content: center;
+        font-size: 15px;
+        grid-gap: 0rem;
+        padding: 12px;
+      }
+      .dataDiv1 > div > p {
+        margin: 0px;
+      }
+      .dataDiv1 > div > span {
+        font-weight: bold;
+        color: darkred;
+      }
+      #deleteBtn,
+      #updateBtn {
+        width: 50px;
+        height: 32px;
+        font-size: 9px;
+        color: red;
+        background-color: black;
+      }
+      #updateBtn {
+        width: 70px;
+        margin-left: 3rem;
+        background-color: tomato;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="leftForm">
+        <h1>Fill the Student Information</h1>
+        <form action="create">
+          <div>
+            <label for="name">Name:</label>
+            <input type="text" name="studentsName" id="name" />
+          </div>
+          <div>
+            <label for="age">Age:</label>
+            <input type="number" name="studentsAge" id="age" />
+          </div>
+          <div>
+            <label for="city">City:</label>
+            <input type="text" name="studentsCity" id="city" />
+          </div>
+          <div>
+            <label for="contactNumber">Contact Number:</label>
+            <input type="number" name="studentsContNum" id="contactNumber" />
+          </div>
+        </form>
+        <div class="btnDiv">
+          <button onclick="addUser()">Add User</button>
+        </div>
+      </div>
+      <div class="studentData"></div>
+    </div>
+    <script>
+      function addUser() {
+        var name = document.getElementById("name");
+        var age = document.getElementById("age");
+        var city = document.getElementById("city");
+        var contactNumber = document.getElementById("contactNumber");
+        if (
+          name.value.length >= 1 &&
+          age.value.length >= 1 &&
+          city.value.length >= 1 &&
+          contactNumber.value.length >= 1
+        ) {
+          if (contactNumber.value.length == 10) {
+            var studentData = document.getElementsByClassName("studentData");
+            var dataDiv = document.createElement("div");
+            dataDiv.setAttribute("class", "dataDiv1");
+            studentData[0].appendChild(dataDiv);
+            var div1 = document.createElement("div");
+            var span1 = document.createElement("span");
+            span1.innerText = "Name:";
+            var p1 = document.createElement("p");
+            p1.innerText = name.value;
+            div1.appendChild(span1);
+            div1.appendChild(p1);
+            var div2 = document.createElement("div");
+            var span2 = document.createElement("span");
+            span2.innerText = "Age:";
+            var p2 = document.createElement("p");
+            p2.innerText = age.value;
+            div2.appendChild(span2);
+            div2.appendChild(p2);
+            var div3 = document.createElement("div");
+            var span3 = document.createElement("span");
+            span3.innerText = "City:";
+            var p3 = document.createElement("p");
+            p3.innerText = city.value;
+            div3.appendChild(span3);
+            div3.appendChild(p3);
+            var div4 = document.createElement("div");
+            var span4 = document.createElement("span");
+            span4.innerText = "Contact Number:";
+            var p4 = document.createElement("p");
+            p4.innerText = contactNumber.value;
+            var div5 = document.createElement("div");
+            var div5_1 = document.createElement("div");
+            var div5_2 = document.createElement("div");
+            var btn1 = document.createElement("button");
+            btn1.innerText = "Delete Student";
+            btn1.setAttribute("id", "deleteBtn");
+            var btn2 = document.createElement("button");
+            btn2.innerText = "Update Name";
+            btn2.setAttribute("id", "updateBtn");
+            div5.appendChild(div5_1);
+            div5.appendChild(div5_2);
+            div5_1.appendChild(btn1);
+            div5_2.appendChild(btn2);
+
+            div4.appendChild(span4);
+            div4.appendChild(p4);
+            dataDiv.appendChild(div1);
+            dataDiv.appendChild(div2);
+            dataDiv.appendChild(div3);
+            dataDiv.appendChild(div4);
+            dataDiv.appendChild(div4);
+            dataDiv.appendChild(div5);
+            btn1.addEventListener("click", deleteDiv);
+            function deleteDiv() {
+              studentData[0].removeChild(dataDiv);
+            }
+            btn2.addEventListener("click", updateName);
+            function updateName() {
+              var new_name = prompt("Enter new name");
+              name.value = new_name;
+            }
+          } else {
+            alert("Enter valid inputs");
+          }
+        } else {
+          alert("Check your inputs");
+        }
+      }
+    </script>
+  </body>
+</html>
